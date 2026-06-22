@@ -1,0 +1,129 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      MARK
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+
+  <ion-tabs #tabs>
+    <ion-tab tab="home">
+      <div id="home-page" class="ion-page">
+        <ion-content class="home-tab-content">
+          <h2 class="tab-heading">Listen now</h2>
+          <div class="example-content form-block">
+            <ion-item lines="full">
+              <ion-label position="stacked">Лейбл</ion-label>
+              <ion-input
+                [(ngModel)]="entryLabel"
+                placeholder="Название для строки в таблице"
+                name="entryLabel"
+              ></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+              <ion-label position="stacked">Вписать</ion-label>
+              <ion-input
+                [(ngModel)]="entryText"
+                placeholder="Что добавить в таблицу"
+                name="entryText"
+              ></ion-input>
+            </ion-item>
+            <div class="form-actions">
+              <ion-button expand="block" (click)="addEntry()">Добавить в таблицу</ion-button>
+              <ion-button fill="outline" expand="block" (click)="selectRadio()">На Radio</ion-button>
+            </div>
+
+            <div class="table-block" *ngIf="entries.length; else emptyTable">
+              <table class="entries-table">
+                <thead>
+                  <tr>
+                    <th>Лейбл</th>
+                    <th>Что вписали</th>
+                    <th>Действие</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of entries; let i = index">
+                    <td>{{ row.label }}</td>
+                    <td>{{ row.text }}</td>
+                    <td><ion-button expand="block" (click)="removeEntry(i)">удалить</ion-button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ng-template #emptyTable>
+              <p class="table-hint">Пока пусто — заполните поля и нажмите «Добавить в таблицу».</p>
+            </ng-template>
+          </div>
+        </ion-content>
+      </div>
+    </ion-tab>
+    <ion-tab tab="radio">
+      <div id="radio-page" class="ion-page">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Radio</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <div class="example-content">Radio content</div>
+        </ion-content>
+      </div>
+    </ion-tab>
+    <ion-tab tab="library">
+      <div id="library-page" class="ion-page">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Library</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <div class="example-content">Library content</div>
+        </ion-content>
+      </div>
+    </ion-tab>
+    <ion-tab tab="search">
+      <div id="search-page" class="ion-page">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Search</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <div class="example-content">Search content</div>
+        </ion-content>
+      </div>
+    </ion-tab>
+  
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="play-circle"></ion-icon>
+        Listen Now
+      </ion-tab-button>
+      <ion-tab-button tab="radio">
+        <ion-icon name="radio"></ion-icon>
+        Radio
+      </ion-tab-button>
+      <ion-tab-button tab="library">
+        <ion-icon name="library"></ion-icon>
+        Library
+      </ion-tab-button>
+      <ion-tab-button tab="search">
+        <ion-icon name="search"></ion-icon>
+        Search
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>
